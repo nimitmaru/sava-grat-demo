@@ -9,7 +9,7 @@ import { CumulativeChart } from "./components/cumulative_chart"
 import { AnnuitySchedule } from "./components/annuity_schedule"
 import { ClientHistory } from "./components/client_history"
 import { TaxDocuments } from "./components/tax_documents"
-import { getHousehold, getGratsByHousehold, getActivities, getDocuments } from "@/lib/data/store"
+import { getHousehold, getGratsByHousehold, getActivities, getDocuments, getPendingRollovers } from "@/lib/data/store"
 import { formatCompactCurrency } from "@/lib/format"
 import { notFound } from "next/navigation"
 
@@ -26,6 +26,7 @@ export default async function ClientDetailPage({
   const activeGrats = grats.filter(g => !["rolled", "completed"].includes(g.status))
   const activities = getActivities(id)
   const documents = getDocuments(id)
+  const proposals = getPendingRollovers().filter(p => p.householdId === id)
 
   // Calculate avg return vs hurdle
   const avgExcess = activeGrats.length > 0
@@ -59,7 +60,7 @@ export default async function ClientDetailPage({
             ladder: (
                 <div className="space-y-6">
                   <GratTimeline grats={grats} />
-                  <GratLadder grats={grats} householdId={id} />
+                  <GratLadder grats={grats} householdId={id} proposals={proposals} household={household} />
                   <CumulativeChart grats={grats} />
                 </div>
               ),

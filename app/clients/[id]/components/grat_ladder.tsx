@@ -1,14 +1,23 @@
 "use client"
 
 import { Fragment, useState } from "react"
-import type { GRAT } from "@/lib/types"
+import type { GRAT, RolloverProposal, Household } from "@/lib/types"
 import { StatusPill } from "@/components/ui/status_pill"
 import { AssetTypeBadge } from "@/components/ui/asset_type_badge"
 import { WorkflowTracker } from "@/components/ui/workflow_tracker"
+import { RolloverModal } from "@/components/ui/rollover_modal"
 import { formatCurrency, formatDate } from "@/lib/format"
 
-export function GratLadder({ grats, householdId }: { grats: GRAT[]; householdId: string }) {
+type GratLadderProps = {
+  grats: GRAT[]
+  householdId: string
+  proposals: RolloverProposal[]
+  household: Household
+}
+
+export function GratLadder({ grats, householdId, proposals, household }: GratLadderProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [rolloverGratId, setRolloverGratId] = useState<string | null>(null)
 
   const sortedGrats = [...grats].sort((a, b) => {
     const aHistorical = ["rolled", "completed"].includes(a.status) ? 1 : 0
@@ -91,6 +100,14 @@ export function GratLadder({ grats, householdId }: { grats: GRAT[]; householdId:
                         Rollover recommended
                       </p>
                     )}
+                    {(isMaturing || grat.status === "pending_rollover") && proposals.some(p => p.sourceGratId === grat.id) && (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setRolloverGratId(grat.id) }}
+                        className="mt-1 rounded-lg bg-primary px-2.5 py-1 text-[10px] font-bold text-on-primary hover:bg-primary/90 transition-colors"
+                      >
+                        Review Rollover
+                      </button>
+                    )}
                   </td>
                   <td className="px-4 py-3">
                     <p className="text-sm text-on-surface mb-1">{grat.fundingAsset}</p>
@@ -153,6 +170,22 @@ export function GratLadder({ grats, householdId }: { grats: GRAT[]; householdId:
           })}
         </tbody>
       </table>
+
+      {/* Rollover Modal */}
+      {rolloverGratId && (() => {
+        const sourceGrat = grats.find(g => g.id === rolloverGratId)
+        const proposal = proposals.find(p => p.sourceGratId === rolloverGratId)
+        if (!sourceGrat || !proposal) return null
+        return (
+          <RolloverModal
+            proposal={proposal}
+            sourceGrat={sourceGrat}
+            household={household}
+            open={true}
+            onClose={() => setRolloverGratId(null)}
+          />
+        )
+      })()}
     </div>
   )
 }
