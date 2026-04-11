@@ -1,0 +1,6 @@
+{"type":"server-started","port":63259,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:63259","screen_dir":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/content","state_dir":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/state"}
+{"type":"screen-added","file":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/content/01-layout-nav.html"}
+{"type":"screen-added","file":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/content/waiting-2.html"}
+{"type":"screen-added","file":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/content/03-pages-clients.html"}
+{"type":"screen-added","file":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/53116-1775916066/content/04-pages-reports-workflows.html"}
+{"type":"server-stopped","reason":"owner process exited"}

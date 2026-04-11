@@ -1,0 +1,404 @@
+<h2>Section 3: Page-by-Page Design</h2>
+<p class="subtitle">Key screens the advisor interacts with</p>
+
+<!-- PAGE 1: Client List -->
+<div class="section">
+  <h3>Page 1: Clients List</h3>
+  <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">Route: <code>/clients</code> — The advisor's book of business at a glance</p>
+  <div class="mockup">
+    <div class="mockup-header">Clients</div>
+    <div class="mockup-body" style="background:#f8f9fa; padding:20px;">
+      <!-- Search/Filter Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div style="display:flex; gap:8px;">
+          <input class="mock-input" placeholder="Search clients..." style="width:240px; font-size:12px; padding:6px 12px;">
+          <div style="padding:6px 12px; background:white; border:1px solid #e5e7eb; border-radius:6px; font-size:12px; color:#555;">Status: All ▾</div>
+        </div>
+        <div style="padding:6px 14px; background:#4f46e5; color:white; border-radius:6px; font-size:12px; font-weight:500;">+ New Client</div>
+      </div>
+
+      <!-- Table -->
+      <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; overflow:hidden;">
+        <!-- Header -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:10px 16px; background:#f9fafb; border-bottom:1px solid #e5e7eb; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">
+          <div>Household</div>
+          <div>Custodian</div>
+          <div>Active GRATs</div>
+          <div>Trust AUM</div>
+          <div>Wealth Transferred</div>
+          <div>Status</div>
+        </div>
+        <!-- Row 1 -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center; cursor:pointer;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+          <div>
+            <div style="font-weight:600; color:#111;">Chen Family</div>
+            <div style="font-size:11px; color:#888;">Tech founder — Concentrated NVDA</div>
+          </div>
+          <div style="color:#555;">Schwab</div>
+          <div style="color:#111; font-weight:600;">3</div>
+          <div style="color:#111;">$12,000,000</div>
+          <div style="color:#059669; font-weight:500;">$1,840,000</div>
+          <div><span style="padding:2px 8px; background:#fef3c7; color:#92400e; border-radius:10px; font-size:11px; font-weight:500;">Action needed</span></div>
+        </div>
+        <!-- Row 2 -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center; cursor:pointer;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+          <div>
+            <div style="font-weight:600; color:#111;">Ambani Trust</div>
+            <div style="font-size:11px; color:#888;">Pre-IPO exec — Private co. + public equities</div>
+          </div>
+          <div style="color:#555;">Fidelity</div>
+          <div style="color:#111; font-weight:600;">2</div>
+          <div style="color:#111;">$45,000,000</div>
+          <div style="color:#059669; font-weight:500;">$6,200,000</div>
+          <div><span style="padding:2px 8px; background:#dbeafe; color:#1e40af; border-radius:10px; font-size:11px; font-weight:500;">Rollover ready</span></div>
+        </div>
+        <!-- Row 3 -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center; cursor:pointer;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+          <div>
+            <div style="font-weight:600; color:#111;">Morrison Family</div>
+            <div style="font-size:11px; color:#888;">RE investor — LLCs + diversified</div>
+          </div>
+          <div style="color:#555;">Pershing</div>
+          <div style="color:#111; font-weight:600;">2</div>
+          <div style="color:#111;">$10,000,000</div>
+          <div style="color:#059669; font-weight:500;">$920,000</div>
+          <div><span style="padding:2px 8px; background:#fee2e2; color:#991b1b; border-radius:10px; font-size:11px; font-weight:500;">Underperforming</span></div>
+        </div>
+        <!-- Row 4 -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center; cursor:pointer;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+          <div>
+            <div style="font-weight:600; color:#111;">Nakamura Trust</div>
+            <div style="font-size:11px; color:#888;">Retiree — Diversified portfolio</div>
+          </div>
+          <div style="color:#555;">Schwab</div>
+          <div style="color:#111; font-weight:600;">4</div>
+          <div style="color:#111;">$7,500,000</div>
+          <div style="color:#059669; font-weight:500;">$2,100,000</div>
+          <div><span style="padding:2px 8px; background:#d1fae5; color:#065f46; border-radius:10px; font-size:11px; font-weight:500;">On track</span></div>
+        </div>
+        <!-- Row 5 -->
+        <div style="display:grid; grid-template-columns:2fr 1.2fr 0.8fr 1fr 1fr 0.8fr; padding:12px 16px; font-size:13px; align-items:center; cursor:pointer;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+          <div>
+            <div style="font-weight:600; color:#111;">Whitfield Family</div>
+            <div style="font-size:11px; color:#888;">New client — Diversified</div>
+          </div>
+          <div style="color:#555;">Fidelity</div>
+          <div style="color:#111; font-weight:600;">1</div>
+          <div style="color:#111;">$10,000,000</div>
+          <div style="color:#888;">—</div>
+          <div><span style="padding:2px 8px; background:#f3f4f6; color:#555; border-radius:10px; font-size:11px; font-weight:500;">New</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: Client Detail — GRAT Ladder -->
+<div class="section" style="margin-top:32px;">
+  <h3>Page 2: Client Detail — GRAT Ladder</h3>
+  <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">Route: <code>/clients/[id]</code> — Deep view of a single household's GRAT program</p>
+  <div class="mockup">
+    <div class="mockup-header">Chen Family — GRAT Ladder</div>
+    <div class="mockup-body" style="background:#f8f9fa; padding:20px;">
+      <!-- Client Header -->
+      <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; padding:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:18px; font-weight:700; color:#111;">Chen Family</div>
+          <div style="font-size:12px; color:#888; margin-top:2px;">Tech founder · Schwab · Est. Jan 2024</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <div style="padding:6px 14px; background:#f3f4f6; border-radius:6px; font-size:12px; color:#555;">Asset Substitution</div>
+          <div style="padding:6px 14px; background:#4f46e5; color:white; border-radius:6px; font-size:12px; font-weight:500;">+ New GRAT</div>
+        </div>
+      </div>
+
+      <!-- Metrics Row -->
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin-bottom:16px;">
+        <div style="background:white; padding:12px; border-radius:8px; border:1px solid #e5e7eb;">
+          <div style="font-size:10px; color:#888; text-transform:uppercase;">Trust AUM</div>
+          <div style="font-size:22px; font-weight:700; color:#111;">$12.0M</div>
+        </div>
+        <div style="background:white; padding:12px; border-radius:8px; border:1px solid #e5e7eb;">
+          <div style="font-size:10px; color:#888; text-transform:uppercase;">Wealth Transferred</div>
+          <div style="font-size:22px; font-weight:700; color:#059669;">$1.84M</div>
+        </div>
+        <div style="background:white; padding:12px; border-radius:8px; border:1px solid #e5e7eb;">
+          <div style="font-size:10px; color:#888; text-transform:uppercase;">Active GRATs</div>
+          <div style="font-size:22px; font-weight:700; color:#111;">3</div>
+        </div>
+        <div style="background:white; padding:12px; border-radius:8px; border:1px solid #e5e7eb;">
+          <div style="font-size:10px; color:#888; text-transform:uppercase;">Avg Return vs Hurdle</div>
+          <div style="font-size:22px; font-weight:700; color:#059669;">+8.3%</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div style="display:flex; gap:0; margin-bottom:16px; border-bottom:2px solid #e5e7eb;">
+        <div style="padding:8px 16px; font-size:13px; font-weight:600; color:#4f46e5; border-bottom:2px solid #4f46e5; margin-bottom:-2px;">GRAT Ladder</div>
+        <div style="padding:8px 16px; font-size:13px; color:#888;">Annuity Schedule</div>
+        <div style="padding:8px 16px; font-size:13px; color:#888;">History</div>
+        <div style="padding:8px 16px; font-size:13px; color:#888;">Documents</div>
+      </div>
+
+      <!-- GRAT Timeline/Ladder -->
+      <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; overflow:hidden;">
+        <!-- Header -->
+        <div style="display:grid; grid-template-columns:1.5fr 0.8fr 0.8fr 0.8fr 1fr 0.8fr 0.6fr; padding:10px 16px; background:#f9fafb; border-bottom:1px solid #e5e7eb; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px; font-weight:600;">
+          <div>GRAT</div>
+          <div>Funded</div>
+          <div>Term</div>
+          <div>Hurdle</div>
+          <div>Current Value</div>
+          <div>Est. Remainder</div>
+          <div>Status</div>
+        </div>
+        <!-- Active GRAT 1 -->
+        <div style="display:grid; grid-template-columns:1.5fr 0.8fr 0.8fr 0.8fr 1fr 0.8fr 0.6fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center;">
+          <div>
+            <div style="font-weight:600; color:#111;">GRAT-2026-Q1</div>
+            <div style="font-size:11px; color:#888;">Jan 2026 — Jan 2028</div>
+          </div>
+          <div>$4,000,000</div>
+          <div>2 yr</div>
+          <div>5.20%</div>
+          <div style="font-weight:500;">$4,480,000</div>
+          <div style="color:#059669; font-weight:600;">$380,000</div>
+          <div><span style="padding:2px 8px; background:#d1fae5; color:#065f46; border-radius:10px; font-size:11px;">Active</span></div>
+        </div>
+        <!-- Active GRAT 2 -->
+        <div style="display:grid; grid-template-columns:1.5fr 0.8fr 0.8fr 0.8fr 1fr 0.8fr 0.6fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center;">
+          <div>
+            <div style="font-weight:600; color:#111;">GRAT-2025-Q3</div>
+            <div style="font-size:11px; color:#888;">Jul 2025 — Jul 2027</div>
+          </div>
+          <div>$4,000,000</div>
+          <div>2 yr</div>
+          <div>5.00%</div>
+          <div style="font-weight:500;">$4,720,000</div>
+          <div style="color:#059669; font-weight:600;">$520,000</div>
+          <div><span style="padding:2px 8px; background:#d1fae5; color:#065f46; border-radius:10px; font-size:11px;">Active</span></div>
+        </div>
+        <!-- Maturing GRAT -->
+        <div style="display:grid; grid-template-columns:1.5fr 0.8fr 0.8fr 0.8fr 1fr 0.8fr 0.6fr; padding:12px 16px; border-bottom:1px solid #f3f4f6; font-size:13px; align-items:center; background:#fffbeb;">
+          <div>
+            <div style="font-weight:600; color:#111;">GRAT-2024-Q3</div>
+            <div style="font-size:11px; color:#d97706;">⚠ Matures Apr 18 — Rollover recommended</div>
+          </div>
+          <div>$4,000,000</div>
+          <div>2 yr</div>
+          <div>5.40%</div>
+          <div style="font-weight:500;">$5,160,000</div>
+          <div style="color:#059669; font-weight:600;">$940,000</div>
+          <div><span style="padding:2px 8px; background:#fef3c7; color:#92400e; border-radius:10px; font-size:11px;">Maturing</span></div>
+        </div>
+        <!-- Matured GRAT (history) -->
+        <div style="display:grid; grid-template-columns:1.5fr 0.8fr 0.8fr 0.8fr 1fr 0.8fr 0.6fr; padding:12px 16px; font-size:13px; align-items:center; opacity:0.6;">
+          <div>
+            <div style="font-weight:600; color:#111;">GRAT-2024-Q1</div>
+            <div style="font-size:11px; color:#888;">Jan 2024 — Jan 2026 · Rolled → GRAT-2026-Q1</div>
+          </div>
+          <div>$3,500,000</div>
+          <div>2 yr</div>
+          <div>5.20%</div>
+          <div>—</div>
+          <div style="color:#059669;">$620,000</div>
+          <div><span style="padding:2px 8px; background:#f3f4f6; color:#555; border-radius:10px; font-size:11px;">Rolled</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: GRAT Modeling -->
+<div class="section" style="margin-top:32px;">
+  <h3>Page 3: GRAT Modeling Tool</h3>
+  <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">Route: <code>/modeling</code> — Live-updating projections as advisor configures parameters</p>
+  <div class="mockup">
+    <div class="mockup-header">GRAT Modeling — New Proposal</div>
+    <div class="mockup-body" style="background:#f8f9fa; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:20px;">
+        <!-- Left: Parameters -->
+        <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; padding:20px;">
+          <div style="font-size:15px; font-weight:600; color:#111; margin-bottom:16px;">GRAT Parameters</div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; margin-bottom:4px;">Client</div>
+            <div style="padding:8px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; font-size:13px;">Chen Family ▾</div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; margin-bottom:4px;">Funding Amount</div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input class="mock-input" value="$5,000,000" style="flex:1; font-size:13px; padding:8px 12px;">
+            </div>
+            <div style="height:4px; background:#e5e7eb; border-radius:2px; margin-top:8px;">
+              <div style="height:4px; background:#4f46e5; border-radius:2px; width:50%;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:10px; color:#aaa; margin-top:2px;">
+              <span>$1M</span><span>$10M</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; margin-bottom:4px;">GRAT Term</div>
+            <div style="display:flex; gap:6px;">
+              <div style="padding:6px 14px; background:#4f46e5; color:white; border-radius:6px; font-size:12px; font-weight:500;">2 years</div>
+              <div style="padding:6px 14px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:6px; font-size:12px; color:#555;">3 years</div>
+              <div style="padding:6px 14px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:6px; font-size:12px; color:#555;">5 years</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; margin-bottom:4px;">Funding Asset</div>
+            <div style="padding:8px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; font-size:13px;">NVDA — Concentrated Stock ▾</div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px; color:#888; text-transform:uppercase; margin-bottom:4px;">Expected Annual Return</div>
+            <input class="mock-input" value="15.0%" style="width:100%; font-size:13px; padding:8px 12px;">
+            <div style="height:4px; background:#e5e7eb; border-radius:2px; margin-top:8px;">
+              <div style="height:4px; background:#059669; border-radius:2px; width:60%;"></div>
+            </div>
+          </div>
+
+          <div style="padding:10px; background:#f0fdf4; border-radius:6px; border:1px solid #bbf7d0; margin-bottom:14px;">
+            <div style="font-size:11px; color:#065f46; font-weight:500;">Current 7520 Rate: 5.20%</div>
+            <div style="font-size:10px; color:#059669; margin-top:2px;">Below 12-mo avg (5.45%) — Favorable for new GRATs</div>
+          </div>
+
+          <div style="padding:8px 0; border-top:1px solid #e5e7eb; display:flex; gap:8px; margin-top:8px;">
+            <div style="padding:8px 16px; background:#4f46e5; color:white; border-radius:6px; font-size:12px; font-weight:500; flex:1; text-align:center;">Generate Proposal</div>
+            <div style="padding:8px 16px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:6px; font-size:12px; color:#555; text-align:center;">Save Draft</div>
+          </div>
+        </div>
+
+        <!-- Right: Live Projections -->
+        <div>
+          <!-- Projection Summary -->
+          <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; padding:20px; margin-bottom:16px;">
+            <div style="font-size:15px; font-weight:600; color:#111; margin-bottom:16px;">Projected Outcome</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+              <div style="padding:12px; background:#f0fdf4; border-radius:8px; text-align:center;">
+                <div style="font-size:10px; color:#065f46; text-transform:uppercase;">Est. Tax-Free Transfer</div>
+                <div style="font-size:28px; font-weight:700; color:#059669; margin-top:4px;">$1,218,750</div>
+              </div>
+              <div style="padding:12px; background:#eef2ff; border-radius:8px; text-align:center;">
+                <div style="font-size:10px; color:#3730a3; text-transform:uppercase;">Gift Tax Saved (40%)</div>
+                <div style="font-size:28px; font-weight:700; color:#4f46e5; margin-top:4px;">$487,500</div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; font-size:12px;">
+              <div style="padding:8px; background:#f9fafb; border-radius:6px;">
+                <div style="color:#888; font-size:10px;">Total Annuity Payments</div>
+                <div style="font-weight:600; color:#111; margin-top:2px;">$5,130,000</div>
+              </div>
+              <div style="padding:8px; background:#f9fafb; border-radius:6px;">
+                <div style="color:#888; font-size:10px;">Projected End Value</div>
+                <div style="font-weight:600; color:#111; margin-top:2px;">$6,348,750</div>
+              </div>
+              <div style="padding:8px; background:#f9fafb; border-radius:6px;">
+                <div style="color:#888; font-size:10px;">Excess Over Hurdle</div>
+                <div style="font-weight:600; color:#059669; margin-top:2px;">+9.8% annualized</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Annuity Schedule Preview -->
+          <div style="background:white; border-radius:8px; border:1px solid #e5e7eb; padding:20px;">
+            <div style="font-size:14px; font-weight:600; color:#111; margin-bottom:12px;">Annuity Schedule</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; font-size:12px;">
+              <div style="padding:8px; background:#f9fafb; border-radius:6px; text-align:center;">
+                <div style="color:#888; font-size:10px;">Year 1 Payment</div>
+                <div style="font-weight:600; color:#111; margin-top:2px;">$2,565,000</div>
+                <div style="font-size:10px; color:#888;">Due Apr 2027</div>
+              </div>
+              <div style="padding:8px; background:#f9fafb; border-radius:6px; text-align:center;">
+                <div style="color:#888; font-size:10px;">Year 2 Payment</div>
+                <div style="font-weight:600; color:#111; margin-top:2px;">$2,565,000</div>
+                <div style="font-size:10px; color:#888;">Due Apr 2028</div>
+              </div>
+              <div style="padding:8px; background:#eef2ff; border-radius:6px; text-align:center;">
+                <div style="color:#3730a3; font-size:10px;">Remainder to Beneficiaries</div>
+                <div style="font-weight:600; color:#4f46e5; margin-top:2px;">$1,218,750</div>
+                <div style="font-size:10px; color:#4f46e5;">Tax-free</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: 7520 Rate Monitor -->
+<div class="section" style="margin-top:32px;">
+  <h3>Page 4: 7520 Rate Monitor</h3>
+  <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">Route: <code>/rate-monitor</code> — Current rate, history, and advisory signals</p>
+  <div class="mockup">
+    <div class="mockup-header">7520 Rate Monitor</div>
+    <div class="mockup-body" style="background:#f8f9fa; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb; text-align:center;">
+          <div style="font-size:11px; color:#888; text-transform:uppercase;">Current Rate (Apr 2026)</div>
+          <div style="font-size:36px; font-weight:700; color:#059669; margin-top:4px;">5.20%</div>
+          <div style="font-size:11px; color:#059669;">↓ 0.20% from last month</div>
+        </div>
+        <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb; text-align:center;">
+          <div style="font-size:11px; color:#888; text-transform:uppercase;">12-Month Average</div>
+          <div style="font-size:36px; font-weight:700; color:#111; margin-top:4px;">5.45%</div>
+          <div style="font-size:11px; color:#888;">Range: 4.80% — 5.80%</div>
+        </div>
+        <div style="background:#f0fdf4; padding:16px; border-radius:8px; border:1px solid #bbf7d0; text-align:center;">
+          <div style="font-size:11px; color:#065f46; text-transform:uppercase;">Advisory Signal</div>
+          <div style="font-size:18px; font-weight:700; color:#059669; margin-top:8px;">Favorable</div>
+          <div style="font-size:11px; color:#065f46; margin-top:4px;">Rate below avg — good time for new GRATs</div>
+        </div>
+      </div>
+
+      <!-- Chart placeholder -->
+      <div style="background:white; padding:20px; border-radius:8px; border:1px solid #e5e7eb;">
+        <div style="font-size:14px; font-weight:600; color:#111; margin-bottom:16px;">Historical 7520 Rate — Last 24 Months</div>
+        <div style="height:160px; background:linear-gradient(to right, #eef2ff, #f0fdf4); border-radius:6px; display:flex; align-items:flex-end; justify-content:space-around; padding:0 16px 8px;">
+          <!-- Simplified bar chart representation -->
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:100px;"></div>
+            <div style="font-size:9px; color:#888;">May '24</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:110px;"></div>
+            <div style="font-size:9px; color:#888;">Aug '24</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:120px;"></div>
+            <div style="font-size:9px; color:#888;">Nov '24</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:108px;"></div>
+            <div style="font-size:9px; color:#888;">Feb '25</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:96px;"></div>
+            <div style="font-size:9px; color:#888;">May '25</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:115px;"></div>
+            <div style="font-size:9px; color:#888;">Aug '25</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:105px;"></div>
+            <div style="font-size:9px; color:#888;">Nov '25</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#818cf8; border-radius:3px 3px 0 0; height:98px;"></div>
+            <div style="font-size:9px; color:#888;">Feb '26</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+            <div style="width:18px; background:#059669; border-radius:3px 3px 0 0; height:90px;"></div>
+            <div style="font-size:9px; color:#059669; font-weight:600;">Apr '26</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,7 +33,7 @@ export function ModalShell({ open, onClose, title, subtitle, children }: ModalSh
       {/* Backdrop */}
       <div className="absolute inset-0 bg-primary/40 backdrop-blur-sm" onClick={onClose} />
       {/* Modal panel */}
-      <div className="relative mx-4 max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-surface-container-lowest shadow-2xl">
+      <div className="relative mx-4 max-h-[80vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-surface-container-lowest" style={{ boxShadow: "0 20px 60px rgba(0, 27, 68, 0.18)" }}>
         {/* Header */}
         <div className="sticky top-0 z-10 flex items-start justify-between bg-surface-container-lowest p-6 pb-4">
           <div>

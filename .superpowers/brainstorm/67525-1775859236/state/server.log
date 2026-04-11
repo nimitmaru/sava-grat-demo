@@ -1,0 +1,3 @@
+{"type":"server-started","port":59621,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59621","screen_dir":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/67525-1775859236/content","state_dir":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/67525-1775859236/state"}
+{"type":"screen-added","file":"/Users/nimit/conductor/workspaces/sava-grat-demo/buffalo/.superpowers/brainstorm/67525-1775859236/content/waiting.html"}
+{"type":"server-stopped","reason":"owner process exited"}
