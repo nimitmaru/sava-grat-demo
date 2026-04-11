@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
+import { AppShell } from "@/components/layout/app_shell";
+import { ToastProvider } from "@/components/ui/toast";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,7 +42,9 @@ export default function RootLayout({
         />
       </head>
       <body className="h-full bg-background text-on-background font-body">
-        {children}
+        <ToastProvider>
+          <AppShell>{children}</AppShell>
+        </ToastProvider>
       </body>
     </html>
   );
