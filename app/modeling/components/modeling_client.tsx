@@ -3,6 +3,7 @@
 import { useState } from "react"
 import type { Household, AssetType } from "@/lib/types"
 import { ParameterForm } from "./parameter_form"
+import { ProjectionPanel } from "./projection_panel"
 
 type ModelingParams = {
   householdId: string
@@ -52,9 +53,11 @@ export function ModelingClient({
           onParamsChange={setParams}
         />
       </div>
-      {/* Right: Projections — will be added in Task 18 */}
-      <div className="col-span-7 overflow-y-auto rounded-xl bg-surface-container-lowest p-6">
-        <p className="text-sm text-on-surface-variant">Projections will appear here as you adjust parameters...</p>
+      {/* Right: Projections */}
+      <div className="col-span-7 overflow-y-auto">
+        <div className="rounded-xl bg-surface-container-lowest p-6">
+          <ProjectionPanel params={params} />
+        </div>
       </div>
     </div>
   )
