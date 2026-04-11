@@ -6,7 +6,10 @@ import { ClientTabs } from "./components/client_tabs"
 import { GratTimeline } from "./components/grat_timeline"
 import { GratLadder } from "./components/grat_ladder"
 import { CumulativeChart } from "./components/cumulative_chart"
-import { getHousehold, getGratsByHousehold } from "@/lib/data/store"
+import { AnnuitySchedule } from "./components/annuity_schedule"
+import { ClientHistory } from "./components/client_history"
+import { TaxDocuments } from "./components/tax_documents"
+import { getHousehold, getGratsByHousehold, getActivities, getDocuments } from "@/lib/data/store"
 import { formatCompactCurrency } from "@/lib/format"
 import { notFound } from "next/navigation"
 
@@ -21,6 +24,8 @@ export default async function ClientDetailPage({
 
   const grats = getGratsByHousehold(id)
   const activeGrats = grats.filter(g => !["rolled", "completed"].includes(g.status))
+  const activities = getActivities(id)
+  const documents = getDocuments(id)
 
   // Calculate avg return vs hurdle
   const avgExcess = activeGrats.length > 0
@@ -58,9 +63,9 @@ export default async function ClientDetailPage({
                   <CumulativeChart grats={grats} />
                 </div>
               ),
-            annuity: <div className="rounded-xl bg-surface-container-lowest p-6 text-sm text-on-surface-variant">Annuity Schedule — coming in Task 16</div>,
-            history: <div className="rounded-xl bg-surface-container-lowest p-6 text-sm text-on-surface-variant">History — coming in Task 16</div>,
-            documents: <div className="rounded-xl bg-surface-container-lowest p-6 text-sm text-on-surface-variant">Tax & Documents — coming in Task 16</div>,
+            annuity: <AnnuitySchedule grats={grats} />,
+            history: <ClientHistory activities={activities} />,
+            documents: <TaxDocuments documents={documents} />,
           }}
         </ClientTabs>
 
