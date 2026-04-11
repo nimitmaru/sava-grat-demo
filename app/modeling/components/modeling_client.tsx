@@ -42,6 +42,13 @@ export function ModelingClient({
     advisorFeeRate: defaultHousehold.advisorFeeRate,
   })
 
+  const [proposalMode, setProposalMode] = useState(false)
+
+  const handleParamsChange = (newParams: ModelingParams) => {
+    setProposalMode(false)
+    setParams(newParams)
+  }
+
   return (
     <div className="grid grid-cols-12 gap-6 flex-1 min-h-0">
       {/* Left: Parameters */}
@@ -50,13 +57,19 @@ export function ModelingClient({
           households={households}
           currentRate={currentRate}
           params={params}
-          onParamsChange={setParams}
+          onParamsChange={handleParamsChange}
+          proposalMode={proposalMode}
+          onGenerateProposal={() => setProposalMode(true)}
         />
       </div>
       {/* Right: Projections */}
       <div className="col-span-7 overflow-y-auto">
         <div className="rounded-xl bg-surface-container-lowest p-6">
-          <ProjectionPanel params={params} />
+          <ProjectionPanel
+            params={params}
+            proposalMode={proposalMode}
+            onCreateSuccess={() => setProposalMode(false)}
+          />
         </div>
       </div>
     </div>

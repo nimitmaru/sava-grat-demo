@@ -1,9 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { projectGrat } from "@/lib/grat_math"
 import { formatCurrency, formatCompactCurrency } from "@/lib/format"
 import { MetricBlock } from "@/components/ui/metric_block"
 import { RiskProfile } from "./risk_profile"
+import { createGrat } from "@/lib/data/actions"
+import { useToast } from "@/components/ui/toast"
 import type { AssetType } from "@/lib/types"
 
 type ModelingParams = {
@@ -18,7 +21,34 @@ type ModelingParams = {
   advisorFeeRate: number
 }
 
-export function ProjectionPanel({ params }: { params: ModelingParams }) {
+export function ProjectionPanel({
+  params,
+  proposalMode,
+  onCreateSuccess,
+}: {
+  params: ModelingParams
+  proposalMode: boolean
+  onCreateSuccess: () => void
+}) {
+  const { showToast } = useToast()
+  const [creating, setCreating] = useState(false)
+
+  const handleCreate = async () => {
+    setCreating(true)
+    await createGrat({
+      householdId: params.householdId,
+      fundingAmount: params.fundingAmount,
+      termYears: params.termYears,
+      fundingAsset: params.fundingAsset,
+      assetType: params.assetType,
+      expectedReturn: params.expectedReturn,
+      rate7520: params.rate7520,
+    })
+    showToast("GRAT created. Trust accepted by Sava Trust Company.", "success")
+    setCreating(false)
+    onCreateSuccess()
+  }
+
   const projection = projectGrat({
     fundingAmount: params.fundingAmount,
     rate7520: params.rate7520,
@@ -103,6 +133,30 @@ export function ProjectionPanel({ params }: { params: ModelingParams }) {
           </div>
         </div>
       </div>
+
+      {/* Proposal Confirmation */}
+      {proposalMode && (
+        <div className="rounded-xl bg-gradient-to-br from-primary to-primary-container p-6 text-white">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="material-symbols-outlined" style={{ fontSize: "20px" }}>task_alt</span>
+            <h4 className="font-headline text-lg font-extrabold">Ready to Create GRAT</h4>
+          </div>
+          <p className="text-sm opacity-80 mb-1">
+            {params.fundingAsset} · {params.termYears}-Year Term · {formatCurrency(params.fundingAmount)}
+          </p>
+          <div className="flex items-center gap-1.5 text-sm opacity-80 mb-4">
+            <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>verified</span>
+            Sava Trust Company will serve as corporate trustee — Nevada charter
+          </div>
+          <button
+            onClick={handleCreate}
+            disabled={creating}
+            className="w-full rounded-xl bg-white px-4 py-3 text-sm font-bold text-primary disabled:opacity-50 transition-colors hover:bg-white/90"
+          >
+            {creating ? "Creating..." : "Create GRAT — Sava Trust Company"}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

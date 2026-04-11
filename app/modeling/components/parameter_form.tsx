@@ -20,11 +20,15 @@ export function ParameterForm({
   currentRate,
   params,
   onParamsChange,
+  proposalMode,
+  onGenerateProposal,
 }: {
   households: Household[]
   currentRate: number
   params: ModelingParams
   onParamsChange: (params: ModelingParams) => void
+  proposalMode: boolean
+  onGenerateProposal: () => void
 }) {
   const selectedHousehold = households.find(h => h.id === params.householdId) ?? households[0]
 
@@ -168,8 +172,11 @@ export function ParameterForm({
 
       {/* Buttons */}
       <div className="flex gap-3">
-        <button className="flex-1 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-on-primary">
-          Generate Proposal
+        <button
+          onClick={onGenerateProposal}
+          className="flex-1 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-on-primary transition-colors hover:opacity-90"
+        >
+          {proposalMode ? "Edit Parameters" : "Generate Proposal"}
         </button>
         <button className="rounded-xl bg-surface-container-low px-4 py-3 text-sm font-bold text-on-surface-variant">
           Save Draft
