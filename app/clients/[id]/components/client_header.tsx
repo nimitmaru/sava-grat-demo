@@ -1,9 +1,15 @@
+"use client"
+
+import { useState } from "react"
 import type { Household } from "@/lib/types"
 import { StatusPill } from "@/components/ui/status_pill"
+import { ValuationModal } from "@/components/ui/valuation_modal"
 import Link from "next/link"
 
 export function ClientHeader({ household }: { household: Household }) {
-  const hasStaleValuation = household.holdings.some(h => h.valuationStale)
+  const [valModalOpen, setValModalOpen] = useState(false)
+
+  const staleAsset = household.holdings.find(h => h.valuationStale)
 
   return (
     <div className="rounded-xl bg-surface-container-lowest p-6">
@@ -27,8 +33,11 @@ export function ClientHeader({ household }: { household: Household }) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {hasStaleValuation && (
-            <button className="flex items-center gap-1.5 rounded-xl bg-surface-container-low px-4 py-2 text-sm font-bold text-on-surface-variant">
+          {staleAsset && (
+            <button
+              onClick={() => setValModalOpen(true)}
+              className="flex items-center gap-1.5 rounded-xl bg-surface-container-low px-4 py-2 text-sm font-bold text-on-surface-variant"
+            >
               <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>query_stats</span>
               Request Valuation
             </button>
@@ -39,6 +48,14 @@ export function ClientHeader({ household }: { household: Household }) {
           </Link>
         </div>
       </div>
+      {staleAsset && (
+        <ValuationModal
+          household={household}
+          asset={staleAsset}
+          open={valModalOpen}
+          onClose={() => setValModalOpen(false)}
+        />
+      )}
     </div>
   )
 }
