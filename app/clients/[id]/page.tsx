@@ -5,6 +5,7 @@ import { ClientHeader } from "./components/client_header"
 import { ClientTabs } from "./components/client_tabs"
 import { GratTimeline } from "./components/grat_timeline"
 import { GratLadder } from "./components/grat_ladder"
+import { CumulativeChart } from "./components/cumulative_chart"
 import { getHousehold, getGratsByHousehold } from "@/lib/data/store"
 import { formatCompactCurrency } from "@/lib/format"
 import { notFound } from "next/navigation"
@@ -54,6 +55,7 @@ export default async function ClientDetailPage({
                 <div className="space-y-6">
                   <GratTimeline grats={grats} />
                   <GratLadder grats={grats} householdId={id} />
+                  <CumulativeChart grats={grats} />
                 </div>
               ),
             annuity: <div className="rounded-xl bg-surface-container-lowest p-6 text-sm text-on-surface-variant">Annuity Schedule — coming in Task 16</div>,
