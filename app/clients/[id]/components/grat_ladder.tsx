@@ -6,6 +6,7 @@ import { StatusPill } from "@/components/ui/status_pill"
 import { AssetTypeBadge } from "@/components/ui/asset_type_badge"
 import { WorkflowTracker } from "@/components/ui/workflow_tracker"
 import { RolloverModal } from "@/components/ui/rollover_modal"
+import { SubstitutionModal } from "@/components/ui/substitution_modal"
 import { formatCurrency, formatDate } from "@/lib/format"
 
 type GratLadderProps = {
@@ -18,6 +19,7 @@ type GratLadderProps = {
 export function GratLadder({ grats, householdId, proposals, household }: GratLadderProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [rolloverGratId, setRolloverGratId] = useState<string | null>(null)
+  const [substitutionGratId, setSubstitutionGratId] = useState<string | null>(null)
 
   const sortedGrats = [...grats].sort((a, b) => {
     const aHistorical = ["rolled", "completed"].includes(a.status) ? 1 : 0
@@ -108,6 +110,14 @@ export function GratLadder({ grats, householdId, proposals, household }: GratLad
                         Review Rollover
                       </button>
                     )}
+                    {isUnderperforming && (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setSubstitutionGratId(grat.id) }}
+                        className="mt-1 rounded-lg bg-error px-2.5 py-1 text-[10px] font-bold text-on-error hover:bg-error/90 transition-colors"
+                      >
+                        Substitute Asset
+                      </button>
+                    )}
                   </td>
                   <td className="px-4 py-3">
                     <p className="text-sm text-on-surface mb-1">{grat.fundingAsset}</p>
@@ -183,6 +193,20 @@ export function GratLadder({ grats, householdId, proposals, household }: GratLad
             household={household}
             open={true}
             onClose={() => setRolloverGratId(null)}
+          />
+        )
+      })()}
+
+      {/* Substitution Modal */}
+      {substitutionGratId && (() => {
+        const targetGrat = grats.find(g => g.id === substitutionGratId)
+        if (!targetGrat) return null
+        return (
+          <SubstitutionModal
+            grat={targetGrat}
+            household={household}
+            open={true}
+            onClose={() => setSubstitutionGratId(null)}
           />
         )
       })()}
