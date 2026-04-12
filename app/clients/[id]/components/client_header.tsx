@@ -4,10 +4,12 @@ import { useState } from "react"
 import type { Household } from "@/lib/types"
 import { StatusPill } from "@/components/ui/status_pill"
 import { ValuationModal } from "@/components/ui/valuation_modal"
+import { AttorneyInviteModal } from "@/components/ui/attorney_invite_modal"
 import Link from "next/link"
 
 export function ClientHeader({ household }: { household: Household }) {
   const [valModalOpen, setValModalOpen] = useState(false)
+  const [attorneyModalOpen, setAttorneyModalOpen] = useState(false)
 
   const staleAsset = household.holdings.find(h => h.valuationStale)
 
@@ -29,16 +31,27 @@ export function ClientHeader({ household }: { household: Household }) {
               <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>verified</span>
               Trustee: Sava Trust Company, NV
             </span>
-            <span className="flex items-center gap-1.5 text-on-surface-variant">
+            <button
+              onClick={() => setAttorneyModalOpen(true)}
+              className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors"
+            >
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-container text-[9px] font-bold text-white">
                 {household.attorney.initials}
               </span>
-              {household.attorney.name} · {household.attorney.firm}
-            </span>
+              {household.attorney.name} &middot; {household.attorney.firm}
+              <span className="material-symbols-outlined" style={{ fontSize: "14px" }}>open_in_new</span>
+            </button>
             <span className="text-on-surface-variant">Contact: {household.primaryContact}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setAttorneyModalOpen(true)}
+            className="flex items-center gap-1.5 rounded-xl bg-surface-container-low px-4 py-2 text-sm font-bold text-on-surface-variant"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>person_add</span>
+            Invite Attorney
+          </button>
           {staleAsset && (
             <button
               onClick={() => setValModalOpen(true)}
@@ -62,6 +75,12 @@ export function ClientHeader({ household }: { household: Household }) {
           onClose={() => setValModalOpen(false)}
         />
       )}
+      <AttorneyInviteModal
+        open={attorneyModalOpen}
+        onClose={() => setAttorneyModalOpen(false)}
+        householdName={household.name}
+        existingAttorney={household.attorney}
+      />
     </div>
   )
 }

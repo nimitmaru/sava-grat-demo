@@ -5,12 +5,13 @@ import { projectGrat } from "@/lib/grat_math"
 import { formatCurrency, formatCompactCurrency } from "@/lib/format"
 import { MetricBlock } from "@/components/ui/metric_block"
 import { RiskProfile } from "./risk_profile"
-import { createGrat } from "@/lib/data/actions"
-import { useToast } from "@/components/ui/toast"
+import { GratCreationWizard } from "@/components/ui/grat_creation_wizard"
+import { ProposalPreview } from "@/components/ui/proposal_preview"
 import type { AssetType } from "@/lib/types"
 
 type ModelingParams = {
   householdId: string
+  householdName: string
   fundingAmount: number
   termYears: number
   fundingAsset: string
@@ -19,6 +20,8 @@ type ModelingParams = {
   rate7520: number
   custodian: string
   advisorFeeRate: number
+  attorneyName: string
+  attorneyFirm: string
 }
 
 export function ProjectionPanel({
@@ -30,24 +33,8 @@ export function ProjectionPanel({
   proposalMode: boolean
   onCreateSuccess: () => void
 }) {
-  const { showToast } = useToast()
-  const [creating, setCreating] = useState(false)
-
-  const handleCreate = async () => {
-    setCreating(true)
-    await createGrat({
-      householdId: params.householdId,
-      fundingAmount: params.fundingAmount,
-      termYears: params.termYears,
-      fundingAsset: params.fundingAsset,
-      assetType: params.assetType,
-      expectedReturn: params.expectedReturn,
-      rate7520: params.rate7520,
-    })
-    showToast("GRAT created. Trust accepted by Sava Trust Company.", "success")
-    setCreating(false)
-    onCreateSuccess()
-  }
+  const [showWizard, setShowWizard] = useState(false)
+  const [showProposal, setShowProposal] = useState(false)
 
   const projection = projectGrat({
     fundingAmount: params.fundingAmount,
@@ -139,7 +126,18 @@ export function ProjectionPanel({
         </div>
       </div>
 
-      {/* Proposal Confirmation */}
+      {/* Generate Client Proposal */}
+      {proposalMode && (
+        <button
+          onClick={() => setShowProposal(true)}
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-surface-container-low px-4 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary-fixed/20"
+        >
+          <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>description</span>
+          Generate Client Proposal
+        </button>
+      )}
+
+      {/* GRAT Creation Workflow */}
       {proposalMode && (
         <div className="rounded-xl bg-gradient-to-br from-primary to-primary-container p-6 text-white">
           <div className="flex items-center gap-2 mb-3">
@@ -154,14 +152,57 @@ export function ProjectionPanel({
             Sava Trust Company will serve as corporate trustee — Nevada charter
           </div>
           <button
-            onClick={handleCreate}
-            disabled={creating}
-            className="w-full rounded-xl bg-white px-4 py-3 text-sm font-bold text-primary disabled:opacity-50 transition-colors hover:bg-white/90"
+            onClick={() => setShowWizard(true)}
+            className="w-full rounded-xl bg-white px-4 py-3 text-sm font-bold text-primary transition-colors hover:bg-white/90"
           >
-            {creating ? "Creating..." : "Create GRAT — Sava Trust Company"}
+            Begin GRAT Creation Workflow
           </button>
+          <p className="text-[11px] opacity-60 mt-2 text-center">
+            6-step process: parameter review → attorney → e-signature → trust acceptance → funding
+          </p>
         </div>
       )}
+
+      {showWizard && (
+        <GratCreationWizard
+          params={{
+            householdId: params.householdId,
+            householdName: params.householdName,
+            fundingAmount: params.fundingAmount,
+            termYears: params.termYears,
+            fundingAsset: params.fundingAsset,
+            assetType: params.assetType,
+            expectedReturn: params.expectedReturn,
+            rate7520: params.rate7520,
+            attorneyName: params.attorneyName,
+            attorneyFirm: params.attorneyFirm,
+            custodian: params.custodian,
+          }}
+          onClose={() => setShowWizard(false)}
+          onComplete={() => {
+            setShowWizard(false)
+            onCreateSuccess()
+          }}
+        />
+      )}
+
+      <ProposalPreview
+        open={showProposal}
+        onClose={() => setShowProposal(false)}
+        params={{
+          householdName: params.householdName,
+          primaryContact: "",
+          fundingAmount: params.fundingAmount,
+          termYears: params.termYears,
+          fundingAsset: params.fundingAsset,
+          expectedReturn: params.expectedReturn,
+          rate7520: params.rate7520,
+          advisorFeeRate: params.advisorFeeRate,
+          attorneyName: params.attorneyName,
+          attorneyFirm: params.attorneyFirm,
+          custodian: params.custodian,
+        }}
+      />
     </div>
   )
 }

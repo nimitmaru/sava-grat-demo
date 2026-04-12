@@ -152,13 +152,40 @@ export function getDashboardStats(): {
   pendingRollovers: number
   totalHouseholds: number
   totalAUM: number
+  maturingThisMonth: number
+  clientsWithoutProgram: number
+  rateFavorableClients: number
+  currentRate: number
 } {
+  const today = new Date("2026-04-11")
+  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+
+  const maturingThisMonth = grats.filter(g => {
+    const maturity = new Date(g.maturityDate)
+    return maturity >= today && maturity <= endOfMonth && !["rolled", "completed"].includes(g.status)
+  }).length
+
+  const clientsWithoutProgram = households.filter(h => {
+    const hGrats = grats.filter(g => g.householdId === h.id && !["rolled", "completed"].includes(g.status))
+    return hGrats.length === 0
+  }).length
+
+  const rate = fixtureCurrentRate
+  const rateHistory = fixtureRateHistory
+  const last12 = rateHistory.slice(-12)
+  const avgRate = last12.reduce((s, r) => s + r.rate, 0) / last12.length
+  const rateFavorableClients = rate < avgRate ? households.length : 0
+
   return {
     activeGrats: getActiveGrats().length,
     wealthTransferred: households.reduce((sum, h) => sum + h.wealthTransferred, 0),
     pendingRollovers: getPendingRollovers().length,
     totalHouseholds: households.length,
     totalAUM: households.reduce((sum, h) => sum + h.totalAUM, 0),
+    maturingThisMonth,
+    clientsWithoutProgram,
+    rateFavorableClients,
+    currentRate: rate,
   }
 }
 

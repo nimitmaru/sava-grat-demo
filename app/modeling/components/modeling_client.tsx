@@ -7,6 +7,7 @@ import { ProjectionPanel } from "./projection_panel"
 
 type ModelingParams = {
   householdId: string
+  householdName: string
   fundingAmount: number
   termYears: number
   fundingAsset: string
@@ -15,6 +16,8 @@ type ModelingParams = {
   rate7520: number
   custodian: string
   advisorFeeRate: number
+  attorneyName: string
+  attorneyFirm: string
 }
 
 export function ModelingClient({
@@ -32,6 +35,7 @@ export function ModelingClient({
 
   const [params, setParams] = useState<ModelingParams>({
     householdId: defaultHousehold.id,
+    householdName: defaultHousehold.name,
     fundingAmount: 5_000_000,
     termYears: 2,
     fundingAsset: defaultHousehold.holdings[0]?.name ?? "",
@@ -40,6 +44,8 @@ export function ModelingClient({
     rate7520: currentRate,
     custodian: defaultHousehold.custodian,
     advisorFeeRate: defaultHousehold.advisorFeeRate,
+    attorneyName: defaultHousehold.attorney.name,
+    attorneyFirm: defaultHousehold.attorney.firm,
   })
 
   const [proposalMode, setProposalMode] = useState(false)
