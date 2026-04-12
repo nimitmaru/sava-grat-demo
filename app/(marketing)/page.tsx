@@ -73,7 +73,7 @@ export default function LandingPage() {
             Nevada-Chartered Corporate Trustee
           </p>
           <h1 className="font-headline text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.08] max-w-4xl mx-auto">
-            Rolling GRATs, without the headaches.
+            The Modern Approach to Rolling GRATs
           </h1>
           <p className="mt-6 text-lg md:text-xl text-on-primary-container max-w-3xl mx-auto leading-relaxed">
             Sava GRAT Platform combines a Nevada trust charter with an intelligent coordination platform.
