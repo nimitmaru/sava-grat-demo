@@ -19,7 +19,7 @@ export function StatCard({ label, value, trend, trendDirection = "neutral", vari
           <p className="font-headline text-[10px] font-bold uppercase tracking-[0.08em] opacity-60">
             {label}
           </p>
-          <p className="font-headline text-5xl font-extrabold tracking-tightest -mt-1">
+          <p className="font-headline text-5xl font-extrabold tracking-tightest">
             {value}
           </p>
           {trend && (
