@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { AppShell } from "@/components/layout/app_shell"
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -16,6 +17,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             The Sava GRAT Platform demo is optimized for desktop browsers.
             Please visit on a device with a screen width of at least 1024px.
           </p>
+          <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+            <span className="material-symbols-outlined text-lg" aria-hidden="true">arrow_back</span>
+            Back to Home
+          </Link>
         </div>
       </div>
 
