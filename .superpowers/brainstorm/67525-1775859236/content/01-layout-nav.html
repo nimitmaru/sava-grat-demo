@@ -1,0 +1,157 @@
+<h2>Section 1: Layout & Navigation</h2>
+<p class="subtitle">Overall page structure and sidebar navigation for the advisor platform</p>
+
+<div class="section">
+  <h3>App Shell</h3>
+  <div class="mockup">
+    <div class="mockup-header">Advisor Platform — App Shell</div>
+    <div class="mockup-body" style="display:flex; min-height:420px; background:#f8f9fa; gap:0;">
+
+      <!-- Sidebar -->
+      <div style="width:220px; background:#1a1a2e; color:#e0e0e0; padding:20px 0; flex-shrink:0; display:flex; flex-direction:column;">
+        <div style="padding:0 20px 24px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div style="font-size:18px; font-weight:700; color:#fff; letter-spacing:1px;">SAVA</div>
+          <div style="font-size:10px; color:#888; margin-top:2px;">Auto-GRAT Platform</div>
+        </div>
+
+        <div style="padding:16px 12px; flex:1;">
+          <div style="padding:8px 12px; background:rgba(99,102,241,0.15); border-radius:6px; color:#818cf8; font-size:13px; font-weight:500; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+            <span style="opacity:0.8;">📊</span> Dashboard
+          </div>
+          <div style="padding:8px 12px; color:#aaa; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+            <span style="opacity:0.6;">👥</span> Clients
+          </div>
+          <div style="padding:8px 12px; color:#aaa; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+            <span style="opacity:0.6;">🧮</span> GRAT Modeling
+          </div>
+          <div style="padding:8px 12px; color:#aaa; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+            <span style="opacity:0.6;">📈</span> Reports
+          </div>
+          <div style="padding:8px 12px; color:#aaa; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+            <span style="opacity:0.6;">💹</span> 7520 Rate
+          </div>
+
+          <div style="border-top:1px solid rgba(255,255,255,0.08); margin-top:16px; padding-top:16px;">
+            <div style="padding:8px 12px; color:#666; font-size:13px; display:flex; align-items:center; gap:8px;">
+              <span style="opacity:0.5;">⚙️</span> Settings
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:12px 20px; border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#4f46e5; display:flex; align-items:center; justify-content:center; font-size:11px; color:white; font-weight:600;">MR</div>
+            <div>
+              <div style="font-size:12px; color:#ccc;">Michael Reynolds</div>
+              <div style="font-size:10px; color:#666;">Reynolds Wealth Mgmt</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="flex:1; display:flex; flex-direction:column;">
+        <!-- Header -->
+        <div style="padding:16px 24px; border-bottom:1px solid #e5e7eb; background:white; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:11px; color:#888;">Home / Dashboard</div>
+            <div style="font-size:18px; font-weight:600; color:#111;">Dashboard</div>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <div style="padding:6px 14px; background:#f3f4f6; border-radius:6px; font-size:12px; color:#555;">7520 Rate: <strong style="color:#059669;">5.20%</strong></div>
+            <div style="padding:6px 14px; background:#4f46e5; color:white; border-radius:6px; font-size:12px; font-weight:500;">+ New GRAT</div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div style="flex:1; padding:24px; background:#f8f9fa; overflow-y:auto;">
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:24px;">
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Active GRATs</div>
+              <div style="font-size:28px; font-weight:700; color:#111; margin-top:4px;">23</div>
+              <div style="font-size:11px; color:#059669; margin-top:4px;">↑ 3 this quarter</div>
+            </div>
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Wealth Transferred</div>
+              <div style="font-size:28px; font-weight:700; color:#111; margin-top:4px;">$4.2M</div>
+              <div style="font-size:11px; color:#059669; margin-top:4px;">↑ $680K YTD</div>
+            </div>
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Pending Rollovers</div>
+              <div style="font-size:28px; font-weight:700; color:#4f46e5; margin-top:4px;">4</div>
+              <div style="font-size:11px; color:#d97706; margin-top:4px;">2 due this week</div>
+            </div>
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Client Households</div>
+              <div style="font-size:28px; font-weight:700; color:#111; margin-top:4px;">5</div>
+              <div style="font-size:11px; color:#888; margin-top:4px;">$47.5M total AUM</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:14px; font-weight:600; color:#111; margin-bottom:12px;">Needs Attention</div>
+              <div style="padding:10px; background:#fef3c7; border-radius:6px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div><strong>Chen Family</strong> — GRAT-2024-Q3 maturing Apr 18</div>
+                <div style="color:#4f46e5; font-weight:500; cursor:pointer;">Review →</div>
+              </div>
+              <div style="padding:10px; background:#fef3c7; border-radius:6px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div><strong>Patel Trust</strong> — Rollover proposal ready</div>
+                <div style="color:#4f46e5; font-weight:500; cursor:pointer;">Approve →</div>
+              </div>
+              <div style="padding:10px; background:#fee2e2; border-radius:6px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div><strong>Morrison Family</strong> — GRAT underperforming hurdle</div>
+                <div style="color:#4f46e5; font-weight:500; cursor:pointer;">Substitute →</div>
+              </div>
+            </div>
+            <div style="background:white; padding:16px; border-radius:8px; border:1px solid #e5e7eb;">
+              <div style="font-size:14px; font-weight:600; color:#111; margin-bottom:12px;">Recent Activity</div>
+              <div style="font-size:12px; color:#555; padding:6px 0; border-bottom:1px solid #f3f4f6;">
+                <span style="color:#888;">Today</span> — GRAT-2026-Q2 created for Chen Family
+              </div>
+              <div style="font-size:12px; color:#555; padding:6px 0; border-bottom:1px solid #f3f4f6;">
+                <span style="color:#888;">Apr 9</span> — Rollover approved for Nakamura Trust
+              </div>
+              <div style="font-size:12px; color:#555; padding:6px 0; border-bottom:1px solid #f3f4f6;">
+                <span style="color:#888;">Apr 7</span> — Asset substitution completed for Morrison Family
+              </div>
+              <div style="font-size:12px; color:#555; padding:6px 0;">
+                <span style="color:#888;">Apr 3</span> — Annuity payment processed for Patel Trust
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Navigation Structure</h3>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:12px;">
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">📊 Dashboard</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Overview metrics, needs-attention alerts, recent activity. The advisor's home screen.</div>
+    </div>
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">👥 Clients</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Household list → Client detail (tabs: GRAT Ladder, Annuity Schedule, History, Settings)</div>
+    </div>
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">🧮 GRAT Modeling</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Standalone modeling tool. Pick client, configure params, live projections, generate proposal.</div>
+    </div>
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">📈 Reports</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Cross-client wealth transfer summary, GRAT performance, fee reporting.</div>
+    </div>
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">💹 7520 Rate Monitor</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Current rate, historical chart, advisory signals, rate impact on active GRATs.</div>
+    </div>
+    <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-weight:600; margin-bottom:8px;">⚙️ Settings</div>
+      <div style="font-size:13px; color:var(--text-secondary);">Firm profile, default GRAT parameters, notification preferences. Mostly decorative.</div>
+    </div>
+  </div>
+</div>
