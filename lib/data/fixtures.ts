@@ -23,6 +23,12 @@ export const households: Household[] = [
     wealthTransferred: 3_200_000,
     status: "action_needed",
     advisorFeeRate: 0.0085,
+    attorney: {
+      name: "J. Martinez, Esq.",
+      firm: "Martinez & Associates",
+      initials: "JM",
+      reviewFee: 500,
+    },
     createdAt: "2024-01-15",
     holdings: [
       { name: "NVDA", type: "concentrated_stock", value: 6_000_000 },
@@ -40,6 +46,12 @@ export const households: Household[] = [
     wealthTransferred: 4_800_000,
     status: "rollover_ready",
     advisorFeeRate: 0.0075,
+    attorney: {
+      name: "S. Krishnamurthy, Esq.",
+      firm: "Krishnamurthy Law Group",
+      initials: "SK",
+      reviewFee: 500,
+    },
     createdAt: "2023-06-01",
     holdings: [
       {
@@ -63,6 +75,12 @@ export const households: Household[] = [
     wealthTransferred: 1_200_000,
     status: "underperforming",
     advisorFeeRate: 0.009,
+    attorney: {
+      name: "R. Thornton, Esq.",
+      firm: "Thornton Estate Law",
+      initials: "RT",
+      reviewFee: 500,
+    },
     createdAt: "2024-09-01",
     holdings: [
       {
@@ -88,6 +106,12 @@ export const households: Household[] = [
     wealthTransferred: 1_860_000,
     status: "on_track",
     advisorFeeRate: 0.008,
+    attorney: {
+      name: "J. Martinez, Esq.",
+      firm: "Martinez & Associates",
+      initials: "JM",
+      reviewFee: 500,
+    },
     createdAt: "2023-01-10",
     holdings: [
       { name: "VTI", type: "public_equity", value: 3_000_000 },
@@ -106,6 +130,12 @@ export const households: Household[] = [
     wealthTransferred: 0,
     status: "new",
     advisorFeeRate: 0.0085,
+    attorney: {
+      name: "L. Fairbanks, Esq.",
+      firm: "Fairbanks & Cole LLP",
+      initials: "LF",
+      reviewFee: 500,
+    },
     createdAt: "2026-03-01",
     holdings: [
       { name: "SPY", type: "public_equity", value: 4_000_000 },

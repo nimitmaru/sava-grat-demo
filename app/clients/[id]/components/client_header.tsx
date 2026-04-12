@@ -29,6 +29,12 @@ export function ClientHeader({ household }: { household: Household }) {
               <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>verified</span>
               Trustee: Sava Trust Company, NV
             </span>
+            <span className="flex items-center gap-1.5 text-on-surface-variant">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-container text-[9px] font-bold text-white">
+                {household.attorney.initials}
+              </span>
+              {household.attorney.name} · {household.attorney.firm}
+            </span>
             <span className="text-on-surface-variant">Contact: {household.primaryContact}</span>
           </div>
         </div>
