@@ -4,14 +4,39 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 
-const NAV_ITEMS = [
+const PLATFORM_ITEMS = [
   { label: "Dashboard", icon: "dashboard", href: "/dashboard" },
   { label: "Clients", icon: "group", href: "/clients" },
   { label: "GRAT Modeling", icon: "calculate", href: "/modeling" },
   { label: "Reports", icon: "analytics", href: "/reports" },
-  { label: "7520 Rate", icon: "monitoring", href: "/rate_monitor" },
-  { label: "Settings", icon: "settings", href: "/settings" },
 ]
+
+const RESOURCE_ITEMS = [
+  { label: "Rates & Strategy", icon: "monitoring", href: "/rates_strategy" },
+  { label: "Help & FAQ", icon: "help", href: "/help" },
+  { label: "Documentation", icon: "menu_book", href: "/docs" },
+]
+
+function NavLink({ item, isActive }: { item: { label: string; icon: string; href: string }; isActive: boolean }) {
+  return (
+    <Link
+      href={item.href}
+      className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+        isActive
+          ? "bg-primary-container text-white"
+          : "text-on-primary-container hover:bg-white/5"
+      }`}
+    >
+      <span
+        className="material-symbols-outlined"
+        style={{ fontSize: "20px", fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
+      >
+        {item.icon}
+      </span>
+      {item.label}
+    </Link>
+  )
+}
 
 export function Sidebar() {
   const pathname = usePathname()
@@ -31,31 +56,30 @@ export function Sidebar() {
         <p className="text-[10px] uppercase tracking-wider text-on-primary-container mt-0" style={{ paddingLeft: 36 }}>GRAT Platform</p>
       </div>
 
-      {/* Navigation */}
+      {/* Platform Navigation */}
       <nav className="flex-1 px-3 space-y-1">
-        {NAV_ITEMS.map((item) => {
-          const isActive = pathname.startsWith(item.href)
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-                isActive
-                  ? "bg-primary-container text-white"
-                  : "text-on-primary-container hover:bg-white/5"
-              }`}
-            >
-              <span
-                className="material-symbols-outlined"
-                style={{ fontSize: "20px", fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
-              >
-                {item.icon}
-              </span>
-              {item.label}
-            </Link>
-          )
-        })}
+        {PLATFORM_ITEMS.map((item) => (
+          <NavLink key={item.href} item={item} isActive={pathname.startsWith(item.href)} />
+        ))}
+
+        {/* Resources Section */}
+        <div className="pt-6">
+          <p className="px-4 pb-2 text-[10px] font-bold uppercase tracking-[0.08em] text-on-primary-container/50">
+            Resources
+          </p>
+          {RESOURCE_ITEMS.map((item) => (
+            <NavLink key={item.href} item={item} isActive={pathname.startsWith(item.href)} />
+          ))}
+        </div>
       </nav>
+
+      {/* Settings */}
+      <div className="px-3 pb-2">
+        <NavLink
+          item={{ label: "Settings", icon: "settings", href: "/settings" }}
+          isActive={pathname.startsWith("/settings")}
+        />
+      </div>
 
       {/* User profile */}
       <div className="border-t border-white/10 px-6 py-4">

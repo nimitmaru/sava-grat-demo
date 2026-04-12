@@ -1,14 +1,38 @@
 "use client"
 
+import { useState } from "react"
 import { Header } from "@/components/layout/header"
 import { SavaFooter } from "@/components/layout/sava_footer"
 import { resetDemo } from "@/lib/data/actions"
 import { useToast } from "@/components/ui/toast"
 import { useRouter } from "next/navigation"
 
+const DEFAULT_PREFS = [
+  { id: "rollover", label: "Rollover Alerts", desc: "Notify when a GRAT is approaching maturity", defaultOn: true },
+  { id: "valuation", label: "Valuation Reminders", desc: "Alert when alternative asset valuations become stale", defaultOn: true },
+  { id: "annuity", label: "Annuity Confirmations", desc: "Confirm when annuity payments are processed", defaultOn: false },
+  { id: "rate", label: "7520 Rate Changes", desc: "Notify when the monthly 7520 rate is published", defaultOn: true },
+  { id: "attorney", label: "Attorney Review Updates", desc: "Alert when an attorney completes a trust instrument review", defaultOn: true },
+  { id: "substitution", label: "Substitution Opportunities", desc: "Flag when a GRAT underperforms its hurdle rate", defaultOn: false },
+]
+
 export default function SettingsPage() {
   const { showToast } = useToast()
   const router = useRouter()
+  const [prefs, setPrefs] = useState<Record<string, boolean>>(
+    Object.fromEntries(DEFAULT_PREFS.map(p => [p.id, p.defaultOn]))
+  )
+
+  const handleToggle = (id: string) => {
+    setPrefs(prev => {
+      const next = { ...prev, [id]: !prev[id] }
+      return next
+    })
+    showToast(
+      `${prefs[id] ? "Disabled" : "Enabled"} ${DEFAULT_PREFS.find(p => p.id === id)?.label}`,
+      "success"
+    )
+  }
 
   const handleReset = async () => {
     await resetDemo()
@@ -33,7 +57,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-1">Primary Advisor</p>
-              <p className="text-sm font-semibold text-on-surface">Michael Reynolds, CFP®</p>
+              <p className="text-sm font-semibold text-on-surface">Michael Reynolds, CFP&reg;</p>
             </div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-1">Location</p>
@@ -41,7 +65,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-1">Clients</p>
-              <p className="text-sm text-on-surface">5 Households · $84.5M AUM</p>
+              <p className="text-sm text-on-surface">5 Households &middot; $84.5M AUM</p>
             </div>
           </div>
         </div>
@@ -95,20 +119,19 @@ export default function SettingsPage() {
         <div className="rounded-xl bg-surface-container-lowest p-6">
           <h3 className="font-headline text-base font-extrabold text-primary mb-4">Notification Preferences</h3>
           <div className="space-y-4">
-            {[
-              { label: "Rollover Alerts", desc: "Notify when a GRAT is approaching maturity", on: true },
-              { label: "Valuation Reminders", desc: "Alert when alternative asset valuations become stale", on: true },
-              { label: "Annuity Confirmations", desc: "Confirm when annuity payments are processed", on: false },
-            ].map(pref => (
-              <div key={pref.label} className="flex items-center justify-between">
+            {DEFAULT_PREFS.map(pref => (
+              <div key={pref.id} className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-semibold text-on-surface">{pref.label}</p>
                   <p className="text-[11px] text-on-surface-variant">{pref.desc}</p>
                 </div>
-                {/* Decorative toggle */}
-                <div className={`h-6 w-11 rounded-full p-0.5 transition-colors ${pref.on ? "bg-secondary" : "bg-surface-container-high"}`}>
-                  <div className={`h-5 w-5 rounded-full bg-white shadow transition-transform ${pref.on ? "translate-x-5" : ""}`} />
-                </div>
+                <button
+                  onClick={() => handleToggle(pref.id)}
+                  className={`relative h-6 w-11 rounded-full p-0.5 transition-colors ${prefs[pref.id] ? "bg-secondary" : "bg-surface-container-high"}`}
+                  aria-label={`Toggle ${pref.label}`}
+                >
+                  <div className={`h-5 w-5 rounded-full bg-white shadow transition-transform ${prefs[pref.id] ? "translate-x-5" : ""}`} />
+                </button>
               </div>
             ))}
           </div>

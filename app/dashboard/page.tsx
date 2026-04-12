@@ -1,14 +1,13 @@
 import { Header } from "@/components/layout/header"
 import { SavaFooter } from "@/components/layout/sava_footer"
 import { StatCard } from "@/components/ui/stat_card"
-import { getDashboardStats, getNeedsAttention, getActivities } from "@/lib/data/store"
-import { formatCompactCurrency, formatDate } from "@/lib/format"
+import { getDashboardStats, getNeedsAttention } from "@/lib/data/store"
+import { formatCompactCurrency, formatPercent } from "@/lib/format"
 import Link from "next/link"
 
 export default function DashboardPage() {
   const stats = getDashboardStats()
   const attentionItems = getNeedsAttention()
-  const recentActivities = getActivities().slice(0, 8)
 
   return (
     <>
@@ -26,107 +25,136 @@ export default function DashboardPage() {
         }
       />
       <div className="flex-1 overflow-y-auto bg-background p-6 space-y-6">
-        {/* Stat Cards Row */}
+        {/* Actionable Metrics */}
         <div className="grid grid-cols-4 gap-6">
-          <StatCard
-            label="Active GRATs"
-            value={String(stats.activeGrats)}
-            trend="+3 this quarter"
-            trendDirection="up"
-            variant="hero"
-          />
           <StatCard
             label="Wealth Transferred"
             value={formatCompactCurrency(stats.wealthTransferred)}
-            trend="+$2.5M YTD"
+            trend={`across ${stats.totalHouseholds} households`}
             trendDirection="up"
             variant="hero"
           />
           <StatCard
-            label="Pending Rollovers"
-            value={String(stats.pendingRollovers)}
-            trend="2 due this week"
+            label="Maturing This Month"
+            value={String(stats.maturingThisMonth)}
+            trend={stats.maturingThisMonth > 0 ? "Rollover decisions needed" : "No action needed"}
+            trendDirection={stats.maturingThisMonth > 0 ? "up" : "neutral"}
             variant="light"
           />
           <StatCard
-            label="Client Households"
-            value={String(stats.totalHouseholds)}
-            trend={`${formatCompactCurrency(stats.totalAUM)} total AUM`}
+            label="Clients Without Program"
+            value={String(stats.clientsWithoutProgram)}
+            trend={stats.clientsWithoutProgram > 0 ? "Opportunity to onboard" : "All clients active"}
+            trendDirection={stats.clientsWithoutProgram > 0 ? "up" : "neutral"}
             variant="light"
           />
+          <div className={`rounded-xl p-6 ${stats.rateFavorableClients > 0 ? "bg-secondary-container/20 border border-secondary/20" : "bg-surface-container-lowest border border-outline-variant/10"}`}>
+            <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-1">7520 Rate Signal</p>
+            <p className={`font-headline text-3xl font-extrabold tracking-tight ${stats.rateFavorableClients > 0 ? "text-secondary" : "text-primary"}`}>
+              {formatPercent(stats.currentRate)}
+            </p>
+            <p className="text-[11px] text-on-surface-variant mt-1">
+              {stats.rateFavorableClients > 0
+                ? `Favorable — consider origination for ${stats.rateFavorableClients} clients`
+                : "Neutral — maintain current positions"
+              }
+            </p>
+          </div>
         </div>
 
-        {/* Two-column grid: Needs Attention + Activity Feed */}
-        <div className="grid grid-cols-2 gap-6">
-          {/* Needs Attention */}
-          <div className="rounded-xl bg-surface-container-lowest p-6">
-            <h2 className="font-headline text-lg font-extrabold text-primary">Needs Attention</h2>
-            <p className="text-sm text-on-surface-variant mb-4">
-              {attentionItems.length} items require your review
-            </p>
+        {/* Action Queue */}
+        <div className="rounded-xl bg-surface-container-lowest p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="font-headline text-lg font-extrabold text-primary">Action Queue</h2>
+              <p className="text-sm text-on-surface-variant">
+                {attentionItems.length} item{attentionItems.length !== 1 ? "s" : ""} requiring your attention
+              </p>
+            </div>
+          </div>
+
+          {attentionItems.length === 0 ? (
+            <div className="rounded-xl bg-secondary-container/10 p-8 text-center">
+              <span className="material-symbols-outlined text-secondary mb-2" style={{ fontSize: "32px" }}>check_circle</span>
+              <p className="text-sm font-semibold text-on-surface">All caught up</p>
+              <p className="text-[13px] text-on-surface-variant">No items require your attention right now</p>
+            </div>
+          ) : (
             <div className="space-y-3">
               {attentionItems.map((item, i) => {
-                const bgColor =
-                  item.type === "underperforming"
-                    ? "bg-error-container/10"
-                    : item.type === "valuation"
-                    ? "bg-primary-fixed/20"
-                    : "bg-tertiary-fixed/10"
+                const config = {
+                  maturing: { bg: "bg-tertiary-fixed/10", icon: "schedule", iconColor: "text-on-tertiary-container", verb: "Review Rollover" },
+                  rollover: { bg: "bg-primary-fixed/20", icon: "autorenew", iconColor: "text-primary", verb: "Approve Rollover" },
+                  underperforming: { bg: "bg-error-container/10", icon: "trending_down", iconColor: "text-error", verb: "Review Substitution" },
+                  valuation: { bg: "bg-surface-container-low", icon: "query_stats", iconColor: "text-on-surface-variant", verb: "Request Valuation" },
+                }[item.type]
 
                 return (
                   <Link
                     key={i}
                     href={item.actionUrl}
-                    className={`block rounded-xl ${bgColor} p-4 transition-colors hover:opacity-80`}
+                    className={`flex items-center justify-between rounded-xl ${config.bg} p-4 transition-colors hover:opacity-80`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/60">
+                        <span className={`material-symbols-outlined ${config.iconColor}`} style={{ fontSize: "20px" }}>
+                          {config.icon}
+                        </span>
+                      </div>
                       <div>
                         <p className="text-sm font-semibold text-on-surface">{item.household.name}</p>
                         <p className="text-[13px] text-on-surface-variant">{item.description}</p>
                       </div>
-                      <span className="text-sm font-semibold text-primary">{item.action}</span>
                     </div>
+                    <span className="flex items-center gap-1 rounded-lg bg-white/80 px-3 py-1.5 text-[12px] font-bold text-primary">
+                      {config.verb}
+                      <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>arrow_forward</span>
+                    </span>
                   </Link>
                 )
               })}
             </div>
-          </div>
+          )}
+        </div>
 
-          {/* Recent Activity */}
-          <div className="rounded-xl bg-surface-container-lowest p-6">
-            <h2 className="font-headline text-lg font-extrabold text-primary">Recent Activity</h2>
-            <p className="text-sm text-on-surface-variant mb-4">Latest actions across all clients</p>
-            <div className="space-y-3">
-              {recentActivities.map((activity) => (
-                <div key={activity.id} className="flex items-start gap-3">
-                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-surface-container-low">
-                    <span
-                      className="material-symbols-outlined text-on-surface-variant"
-                      style={{ fontSize: "14px" }}
-                    >
-                      {activity.type === "trust_accepted"
-                        ? "verified"
-                        : activity.type === "rollover_approved"
-                        ? "autorenew"
-                        : activity.type === "grat_created"
-                        ? "add_circle"
-                        : activity.type === "annuity_paid"
-                        ? "attach_money"
-                        : activity.type === "substitution"
-                        ? "swap_horiz"
-                        : activity.type === "valuation_requested"
-                        ? "query_stats"
-                        : "schedule"}
-                    </span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm text-on-surface">{activity.description}</p>
-                    <p className="text-[11px] text-on-surface-variant">{formatDate(activity.timestamp)}</p>
-                  </div>
-                </div>
-              ))}
+        {/* Quick Actions */}
+        <div className="grid grid-cols-3 gap-6">
+          <Link
+            href="/clients/whitfield"
+            className="flex items-center gap-4 rounded-xl bg-surface-container-lowest p-5 transition-colors hover:bg-primary-fixed/10"
+          >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-fixed">
+              <span className="material-symbols-outlined text-primary" style={{ fontSize: "22px" }}>person_add</span>
             </div>
-          </div>
+            <div>
+              <p className="text-sm font-semibold text-on-surface">Onboard Whitfield Family</p>
+              <p className="text-[12px] text-on-surface-variant">New client — no active GRAT program</p>
+            </div>
+          </Link>
+          <Link
+            href="/modeling"
+            className="flex items-center gap-4 rounded-xl bg-surface-container-lowest p-5 transition-colors hover:bg-primary-fixed/10"
+          >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-fixed">
+              <span className="material-symbols-outlined text-primary" style={{ fontSize: "22px" }}>calculate</span>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-on-surface">Model a New GRAT</p>
+              <p className="text-[12px] text-on-surface-variant">Run projections with current 7520 rate</p>
+            </div>
+          </Link>
+          <Link
+            href="/reports"
+            className="flex items-center gap-4 rounded-xl bg-surface-container-lowest p-5 transition-colors hover:bg-primary-fixed/10"
+          >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-fixed">
+              <span className="material-symbols-outlined text-primary" style={{ fontSize: "22px" }}>analytics</span>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-on-surface">View Practice Report</p>
+              <p className="text-[12px] text-on-surface-variant">Wealth transfer summary & economics</p>
+            </div>
+          </Link>
         </div>
 
         <SavaFooter />

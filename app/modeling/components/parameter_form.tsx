@@ -5,6 +5,7 @@ import { formatCurrency, formatPercent } from "@/lib/format"
 
 type ModelingParams = {
   householdId: string
+  householdName: string
   fundingAmount: number
   termYears: number
   fundingAsset: string
@@ -13,6 +14,8 @@ type ModelingParams = {
   rate7520: number
   custodian: string
   advisorFeeRate: number
+  attorneyName: string
+  attorneyFirm: string
 }
 
 export function ParameterForm({
@@ -37,10 +40,13 @@ export function ParameterForm({
     onParamsChange({
       ...params,
       householdId,
+      householdName: household.name,
       fundingAsset: household.holdings[0]?.name ?? "",
       assetType: household.holdings[0]?.type ?? "diversified",
       custodian: household.custodian,
       advisorFeeRate: household.advisorFeeRate,
+      attorneyName: household.attorney.name,
+      attorneyFirm: household.attorney.firm,
     })
   }
 
