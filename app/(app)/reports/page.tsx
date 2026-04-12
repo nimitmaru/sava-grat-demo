@@ -90,7 +90,7 @@ export default function ReportsPage() {
         {/* Advisor Impact */}
         <AdvisorImpact households={households} />
 
-        {/* Attorney Partner Economics */}
+        {/* Partner Insight: Attorney Economics */}
         {(() => {
           const uniqueAttorneys = new Set(households.map(h => h.attorney.name)).size
           const attorneyReviewIncome = allGrats.length * 500
@@ -110,9 +110,16 @@ export default function ReportsPage() {
           const attorneyList = Array.from(attorneyMap.values())
 
           return (
-            <div className="rounded-xl bg-surface-container-lowest p-6">
+            <div className="rounded-xl bg-gradient-to-br from-primary-fixed/30 to-primary-fixed/10 border border-primary/10 p-6 relative overflow-hidden">
+              {/* Insight badge */}
+              <div className="flex items-center gap-2 mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.06em] text-primary">
+                  <span className="material-symbols-outlined" style={{ fontSize: "14px" }}>lightbulb</span>
+                  Partner Insight
+                </span>
+              </div>
               <h3 className="font-headline text-lg font-extrabold text-primary mb-1">Attorney Partner Economics</h3>
-              <p className="text-sm text-on-surface-variant mb-6">Recurring review income generated for your T&E attorney partners</p>
+              <p className="text-sm text-on-surface-variant mb-6">Auto-GRAT creates recurring review income for your T&amp;E attorney partners — a key incentive for attorney buy-in and referrals</p>
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between py-3">
@@ -123,7 +130,7 @@ export default function ReportsPage() {
                   <span className="font-mono text-xl font-bold text-primary">{allGrats.length}</span>
                 </div>
 
-                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                <div className="flex items-center justify-between py-3 border-t border-primary/10">
                   <div>
                     <p className="text-sm font-semibold text-on-surface">Attorney Review Income (YTD)</p>
                     <p className="text-[11px] text-on-surface-variant">$500 per review, paid by Sava from per-GRAT fee — no additional client cost</p>
@@ -131,7 +138,7 @@ export default function ReportsPage() {
                   <span className="font-mono text-xl font-bold text-secondary">{formatCurrency(attorneyReviewIncome)}</span>
                 </div>
 
-                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                <div className="flex items-center justify-between py-3 border-t border-primary/10">
                   <div>
                     <p className="text-sm font-semibold text-on-surface">Unique Attorney Partners</p>
                     <p className="text-[11px] text-on-surface-variant">Estate planning attorneys earning recurring income through your practice</p>
@@ -139,7 +146,7 @@ export default function ReportsPage() {
                   <span className="font-mono text-xl font-bold text-primary">{uniqueAttorneys}</span>
                 </div>
 
-                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                <div className="flex items-center justify-between py-3 border-t border-primary/10">
                   <div>
                     <p className="text-sm font-semibold text-on-surface">Projected Annual Attorney Income</p>
                     <p className="text-[11px] text-on-surface-variant">Based on current GRAT origination cadence</p>
@@ -148,11 +155,11 @@ export default function ReportsPage() {
                 </div>
               </div>
 
-              <p className="mt-6 text-[11px] text-on-surface-variant border-t border-outline-variant/10 pt-3">
-                Attorney review fees are included in Sava's $1,500 per-GRAT fee. No additional cost to your clients.
+              <p className="mt-6 text-[11px] text-on-surface-variant border-t border-primary/10 pt-3">
+                Attorney review fees are included in Sava&apos;s $1,500 per-GRAT fee. No additional cost to your clients.
               </p>
 
-              <div className="mt-4 pt-3 border-t border-outline-variant/10">
+              <div className="mt-4 pt-3 border-t border-primary/10">
                 <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-3">Per-Attorney Breakdown</p>
                 <div className="space-y-3">
                   {attorneyList.map(({ attorney, householdCount, gratCount }) => (
@@ -163,7 +170,7 @@ export default function ReportsPage() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-on-surface">{attorney.name}</p>
-                          <p className="text-[11px] text-on-surface-variant">{attorney.firm} · {householdCount} household{householdCount !== 1 ? "s" : ""}</p>
+                          <p className="text-[11px] text-on-surface-variant">{attorney.firm} &middot; {householdCount} household{householdCount !== 1 ? "s" : ""}</p>
                         </div>
                       </div>
                       <span className="font-mono text-sm font-semibold text-secondary">{formatCurrency(gratCount * attorney.reviewFee)}</span>

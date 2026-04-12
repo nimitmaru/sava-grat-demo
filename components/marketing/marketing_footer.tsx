@@ -31,7 +31,7 @@ export function MarketingFooter() {
               <Link href="/dashboard" className="block text-sm text-on-primary-container hover:text-white transition-colors">Dashboard</Link>
               <Link href="/modeling" className="block text-sm text-on-primary-container hover:text-white transition-colors">GRAT Modeling</Link>
               <Link href="/reports" className="block text-sm text-on-primary-container hover:text-white transition-colors">Reports</Link>
-              <Link href="/rate_monitor" className="block text-sm text-on-primary-container hover:text-white transition-colors">7520 Rate Monitor</Link>
+              <Link href="/rates_strategy" className="block text-sm text-on-primary-container hover:text-white transition-colors">Rates &amp; Strategy</Link>
             </div>
           </div>
 

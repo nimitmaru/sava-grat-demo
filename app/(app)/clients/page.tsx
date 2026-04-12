@@ -20,10 +20,10 @@ export default function ClientsPage() {
               <span className="material-symbols-outlined text-on-surface-variant" style={{ fontSize: "18px" }}>search</span>
               <input type="text" placeholder="Search clients..." className="bg-transparent text-sm outline-none placeholder:text-on-surface-variant/60 w-48" />
             </div>
-            <button className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-on-primary">
+            <Link href="/clients/new" className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-on-primary">
               <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>add</span>
               New Client
-            </button>
+            </Link>
           </div>
         }
       />

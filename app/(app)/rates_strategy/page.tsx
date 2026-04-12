@@ -4,6 +4,7 @@ import { StatCard } from "@/components/ui/stat_card"
 import { getRateHistory, getCurrentRate, getHouseholds, getGratsByHousehold } from "@/lib/data/store"
 import { formatPercent } from "@/lib/format"
 import { RateChart } from "./rate_chart"
+import { StrategyComparison } from "./components/strategy_comparison"
 
 export default function RateMonitorPage() {
   const rateHistory = getRateHistory()
@@ -17,8 +18,8 @@ export default function RateMonitorPage() {
   return (
     <>
       <Header
-        title="7520 Rate Monitor"
-        breadcrumbs={[{ label: "Home", href: "/dashboard" }, { label: "7520 Rate" }]}
+        title="Rates & Strategy"
+        breadcrumbs={[{ label: "Home", href: "/dashboard" }, { label: "Resources" }, { label: "Rates & Strategy" }]}
       />
       <div className="flex-1 overflow-y-auto bg-background p-6 space-y-6">
         {/* Metrics */}
@@ -120,6 +121,9 @@ export default function RateMonitorPage() {
             </tbody>
           </table>
         </div>
+
+        {/* Strategy Comparison */}
+        <StrategyComparison currentRate={currentRate} />
 
         <SavaFooter />
       </div>
