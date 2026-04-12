@@ -127,6 +127,11 @@ export function ProjectionPanel({
             <span className="font-mono font-semibold text-on-surface">{formatCurrency(projection.savaAdminFee)}/year</span>
           </div>
           <p className="text-[11px] text-on-surface-variant">Billed to client separately, not from your fee</p>
+          <div className="flex justify-between mt-2">
+            <span className="text-on-surface-variant">Attorney review fee</span>
+            <span className="font-mono font-semibold text-on-surface">$500</span>
+          </div>
+          <p className="text-[11px] text-on-surface-variant">Included in Sava per-GRAT fee — no additional client cost</p>
           <div className="flex justify-between mt-2 pt-2 border-t border-outline-variant/10">
             <span className="font-semibold text-on-surface">Client net tax savings</span>
             <span className="font-mono font-bold text-secondary">{formatCurrency(projection.taxSaved)}</span>

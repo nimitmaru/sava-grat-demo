@@ -114,7 +114,7 @@ export function RolloverModal({ proposal, sourceGrat, household, open, onClose }
             </div>
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary" style={{ fontSize: "16px" }}>check_circle</span>
-              Coordinate attorney review ({sourceGrat.attorneyName ?? "J. Martinez, Esq."})
+              Coordinate attorney review ({sourceGrat.attorneyName ?? "J. Martinez, Esq."}) — $500 review fee included
             </div>
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary" style={{ fontSize: "16px" }}>check_circle</span>

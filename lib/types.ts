@@ -8,6 +8,13 @@ export type AssetHolding = {
   valuationStale?: boolean         // True if lastValuationDate > 90 days ago
 }
 
+export type Attorney = {
+  name: string          // "J. Martinez, Esq."
+  firm: string          // "Martinez & Associates"
+  initials: string      // "JM"
+  reviewFee: number     // 500 (per-GRAT review fee paid by Sava)
+}
+
 export type Household = {
   id: string
   name: string
@@ -19,6 +26,7 @@ export type Household = {
   status: "action_needed" | "rollover_ready" | "underperforming" | "on_track" | "new"
   holdings: AssetHolding[]
   advisorFeeRate: number           // e.g. 0.0085 (0.85%)
+  attorney: Attorney
   createdAt: string
 }
 

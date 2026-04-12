@@ -34,6 +34,7 @@ export default function ClientsPage() {
               <tr className="bg-surface-container-low/50">
                 <th className="px-6 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Household</th>
                 <th className="px-6 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Custodian</th>
+                <th className="px-4 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Attorney</th>
                 <th className="px-6 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Active GRATs</th>
                 <th className="px-6 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Asset Types</th>
                 <th className="px-6 py-3 text-right text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant">Trust AUM</th>
@@ -57,6 +58,14 @@ export default function ClientsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-sm text-on-surface">Assets at {household.custodian}</p>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-container text-[9px] font-bold text-white">
+                          {household.attorney.initials}
+                        </div>
+                        <span className="text-sm text-on-surface-variant">{household.attorney.name}</span>
+                      </div>
                     </td>
                     <td className="px-6 py-4">
                       <p className="font-mono text-sm font-bold text-on-surface">{activeGrats.length}</p>

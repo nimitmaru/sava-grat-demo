@@ -90,6 +90,91 @@ export default function ReportsPage() {
         {/* Advisor Impact */}
         <AdvisorImpact households={households} />
 
+        {/* Attorney Partner Economics */}
+        {(() => {
+          const uniqueAttorneys = new Set(households.map(h => h.attorney.name)).size
+          const attorneyReviewIncome = allGrats.length * 500
+          const projectedAnnualIncome = allGrats.length * 500 * 1.5
+
+          // Build per-attorney breakdown
+          const attorneyMap = new Map<string, { attorney: { name: string; firm: string; initials: string; reviewFee: number }; householdCount: number; gratCount: number }>()
+          for (const h of households) {
+            const key = h.attorney.name
+            if (!attorneyMap.has(key)) {
+              attorneyMap.set(key, { attorney: h.attorney, householdCount: 0, gratCount: 0 })
+            }
+            const entry = attorneyMap.get(key)!
+            entry.householdCount++
+            entry.gratCount += getGratsByHousehold(h.id).length
+          }
+          const attorneyList = Array.from(attorneyMap.values())
+
+          return (
+            <div className="rounded-xl bg-surface-container-lowest p-6">
+              <h3 className="font-headline text-lg font-extrabold text-primary mb-1">Attorney Partner Economics</h3>
+              <p className="text-sm text-on-surface-variant mb-6">Recurring review income generated for your T&E attorney partners</p>
+
+              <div className="space-y-4">
+                <div className="flex items-center justify-between py-3">
+                  <div>
+                    <p className="text-sm font-semibold text-on-surface">Reviews Completed This Year</p>
+                    <p className="text-[11px] text-on-surface-variant">Each GRAT creation and rollover includes attorney review</p>
+                  </div>
+                  <span className="font-mono text-xl font-bold text-primary">{allGrats.length}</span>
+                </div>
+
+                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                  <div>
+                    <p className="text-sm font-semibold text-on-surface">Attorney Review Income (YTD)</p>
+                    <p className="text-[11px] text-on-surface-variant">$500 per review, paid by Sava from per-GRAT fee — no additional client cost</p>
+                  </div>
+                  <span className="font-mono text-xl font-bold text-secondary">{formatCurrency(attorneyReviewIncome)}</span>
+                </div>
+
+                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                  <div>
+                    <p className="text-sm font-semibold text-on-surface">Unique Attorney Partners</p>
+                    <p className="text-[11px] text-on-surface-variant">Estate planning attorneys earning recurring income through your practice</p>
+                  </div>
+                  <span className="font-mono text-xl font-bold text-primary">{uniqueAttorneys}</span>
+                </div>
+
+                <div className="flex items-center justify-between py-3 border-t border-outline-variant/10">
+                  <div>
+                    <p className="text-sm font-semibold text-on-surface">Projected Annual Attorney Income</p>
+                    <p className="text-[11px] text-on-surface-variant">Based on current GRAT origination cadence</p>
+                  </div>
+                  <span className="font-mono text-xl font-bold text-secondary">{formatCurrency(projectedAnnualIncome)}</span>
+                </div>
+              </div>
+
+              <p className="mt-6 text-[11px] text-on-surface-variant border-t border-outline-variant/10 pt-3">
+                Attorney review fees are included in Sava's $1,500 per-GRAT fee. No additional cost to your clients.
+              </p>
+
+              <div className="mt-4 pt-3 border-t border-outline-variant/10">
+                <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-on-surface-variant mb-3">Per-Attorney Breakdown</p>
+                <div className="space-y-3">
+                  {attorneyList.map(({ attorney, householdCount, gratCount }) => (
+                    <div key={attorney.name} className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-container text-[9px] font-bold text-on-primary-container shrink-0">
+                          {attorney.initials}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-on-surface">{attorney.name}</p>
+                          <p className="text-[11px] text-on-surface-variant">{attorney.firm} · {householdCount} household{householdCount !== 1 ? "s" : ""}</p>
+                        </div>
+                      </div>
+                      <span className="font-mono text-sm font-semibold text-secondary">{formatCurrency(gratCount * attorney.reviewFee)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
+        })()}
+
         {/* Sava Trust Administration Summary */}
         <div className="rounded-xl bg-surface-container-lowest p-6">
           <h3 className="font-headline text-lg font-extrabold text-primary mb-1">Sava Trust Administration Summary</h3>
