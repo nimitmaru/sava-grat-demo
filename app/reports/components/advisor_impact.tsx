@@ -9,7 +9,7 @@ export function AdvisorImpact({ households }: { households: Household[] }) {
   return (
     <div className="rounded-xl bg-surface-container-lowest p-6">
       <h3 className="font-headline text-lg font-extrabold text-primary mb-1">Your Practice Economics</h3>
-      <p className="text-sm text-on-surface-variant mb-6">How Auto-GRAT impacts your advisory practice</p>
+      <p className="text-sm text-on-surface-variant mb-6">How Sava impacts your advisory practice</p>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between py-3">
