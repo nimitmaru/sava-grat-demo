@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 
 const NAV_ITEMS = [
@@ -19,15 +20,15 @@ export function Sidebar() {
     <aside className="flex h-full w-64 shrink-0 flex-col bg-primary text-on-primary">
       {/* Logo */}
       <div className="px-6 pt-6 pb-8">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-container">
-            <span className="material-symbols-outlined text-white" style={{ fontSize: "20px", fontVariationSettings: "'FILL' 1" }}>account_balance</span>
-          </div>
-          <div>
-            <p className="text-xl font-extrabold tracking-tight">SAVA</p>
-            <p className="text-[10px] uppercase tracking-wider text-on-primary-container">Auto-GRAT Platform</p>
-          </div>
-        </div>
+        <Image
+          src="/sava-logo.svg"
+          alt="Sava"
+          width={140}
+          height={40}
+          className="invert"
+          priority
+        />
+        <p className="text-[10px] uppercase tracking-wider text-on-primary-container mt-0" style={{ paddingLeft: 36 }}>GRAT Platform</p>
       </div>
 
       {/* Navigation */}

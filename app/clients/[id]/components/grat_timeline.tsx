@@ -70,30 +70,38 @@ export function GratTimeline({ grats }: { grats: GRAT[] }) {
           className="min-w-[600px]"
         >
           {/* Grid lines and month labels */}
-          {months.map((m, i) => (
-            <g key={i}>
-              <line
-                x1={labelWidth + (800 - labelWidth) * m.percent / 100}
-                y1={0}
-                x2={labelWidth + (800 - labelWidth) * m.percent / 100}
-                y2={chartHeight - 25}
-                stroke="#c4c7c7"
-                strokeWidth={0.5}
-                strokeDasharray="4,4"
-                opacity={0.3}
-              />
-              <text
-                x={labelWidth + (800 - labelWidth) * m.percent / 100}
-                y={chartHeight - 8}
-                textAnchor="middle"
-                fontSize={10}
-                fill="#434750"
-                fontFamily="var(--font-geist-sans)"
-              >
-                {m.label}
-              </text>
-            </g>
-          ))}
+          {months.map((m, i) => {
+            const tickX = labelWidth + (800 - labelWidth) * m.percent / 100
+            const todayX = labelWidth + (800 - labelWidth) * todayPercent / 100
+            const tooCloseToToday = Math.abs(tickX - todayX) < 40
+
+            return (
+              <g key={i}>
+                <line
+                  x1={tickX}
+                  y1={0}
+                  x2={tickX}
+                  y2={chartHeight - 25}
+                  stroke="#c4c7c7"
+                  strokeWidth={0.5}
+                  strokeDasharray="4,4"
+                  opacity={0.3}
+                />
+                {!tooCloseToToday && (
+                  <text
+                    x={tickX}
+                    y={chartHeight - 8}
+                    textAnchor="middle"
+                    fontSize={10}
+                    fill="#434750"
+                    fontFamily="var(--font-geist-sans)"
+                  >
+                    {m.label}
+                  </text>
+                )}
+              </g>
+            )
+          })}
 
           {/* Today line */}
           <line
