@@ -204,13 +204,13 @@ function StepPreviewPitch({
             <span className="font-semibold">To:</span> {form.email}
           </p>
           <p className="text-[11px] text-on-surface-variant">
-            <span className="font-semibold">Subject:</span> Michael Reynolds invited you to Sava Auto-GRAT — earn recurring review income
+            <span className="font-semibold">Subject:</span> Michael Reynolds invited you to Sava GRAT Platform — earn recurring review income
           </p>
         </div>
         <div className="bg-surface-container-lowest p-5 space-y-4">
           <p className="text-sm text-on-surface">Dear {form.name.split(",")[0]},</p>
           <p className="text-sm text-on-surface-variant">
-            Michael Reynolds at Reynolds Wealth Management has invited you to join Sava&apos;s Auto-GRAT platform as the reviewing attorney for the <span className="font-semibold text-on-surface">{householdName}</span> GRAT program.
+            Michael Reynolds at Reynolds Wealth Management has invited you to join the Sava GRAT Platform as the reviewing attorney for the <span className="font-semibold text-on-surface">{householdName}</span> GRAT program.
           </p>
           <p className="text-sm text-on-surface-variant">
             As a reviewing attorney on Sava, you earn <span className="font-semibold text-on-surface">{formatCurrency(feePerReview)} per GRAT review</span> — paid by Sava, not your client. Each GRAT creation and rollover includes a review, generating passive recurring income.

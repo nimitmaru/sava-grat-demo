@@ -65,7 +65,7 @@ const FAQ_ITEMS = [
         a: "No. Sava holds GRAT assets at your existing custodian (Schwab, Fidelity, Pershing). You continue to bill your standard AUM fee on trust assets. Sava's 0.25% administration fee is additive — the client pays it as a trust cost, not from your fee.",
       },
       {
-        q: "How do attorneys earn from Auto-GRAT?",
+        q: "How do attorneys earn from Sava?",
         a: "Attorneys receive $500 for each GRAT review (creation or rollover), paid by Sava from the per-GRAT fee. An attorney working across 20 households with quarterly rollovers can earn ~$40,000/year in passive review income.",
       },
     ],

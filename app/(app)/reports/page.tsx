@@ -119,7 +119,7 @@ export default function ReportsPage() {
                 </span>
               </div>
               <h3 className="font-headline text-lg font-extrabold text-primary mb-1">Attorney Partner Economics</h3>
-              <p className="text-sm text-on-surface-variant mb-6">Auto-GRAT creates recurring review income for your T&amp;E attorney partners — a key incentive for attorney buy-in and referrals</p>
+              <p className="text-sm text-on-surface-variant mb-6">Sava creates recurring review income for your T&amp;E attorney partners — a key incentive for attorney buy-in and referrals</p>
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between py-3">

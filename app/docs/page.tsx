@@ -6,7 +6,7 @@ const DOC_SECTIONS = [
     title: "Platform Guides",
     icon: "auto_stories",
     items: [
-      { name: "Getting Started with Auto-GRAT", description: "Step-by-step guide to creating your first rolling GRAT program", type: "Guide" },
+      { name: "Getting Started with Sava", description: "Step-by-step guide to creating your first rolling GRAT program", type: "Guide" },
       { name: "Client Onboarding Walkthrough", description: "How to add a new client household and configure their GRAT strategy", type: "Guide" },
       { name: "Attorney Invitation & Review Process", description: "How to invite T&E attorneys and manage the review workflow", type: "Guide" },
       { name: "Rollover Management", description: "Understanding rollover proposals, approval flows, and successor GRAT creation", type: "Guide" },
