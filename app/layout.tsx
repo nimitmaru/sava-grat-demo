@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
-import { AppShell } from "@/components/layout/app_shell";
 import { ToastProvider } from "@/components/ui/toast";
 import "./globals.css";
 
@@ -61,7 +60,7 @@ export default function RootLayout({
         {/* Desktop app */}
         <div className="hidden lg:contents">
           <ToastProvider>
-            <AppShell>{children}</AppShell>
+            {children}
           </ToastProvider>
         </div>
       </body>
